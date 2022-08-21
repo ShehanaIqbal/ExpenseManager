@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Data
@@ -20,4 +21,10 @@ public class Organization implements Serializable {
 
     @Column(name = "name", nullable = false, columnDefinition = "varchar(100) UNIQUE NOT NULL")
     private String name;
+
+    @OneToMany(targetEntity = Employee.class, mappedBy = "organization",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private Set<Employee> employees;
+
+    @OneToMany(targetEntity = OrganizationExpenseType.class, mappedBy = "organization",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private Set<OrganizationExpenseType> organizationExpenseTypeSet;
 }

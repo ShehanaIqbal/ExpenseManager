@@ -8,7 +8,7 @@ import java.io.Serializable;
 @Entity
 @Data
 
-@Table(name = "Expense")
+@Table(name = "expense")
 public class Expense implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -18,13 +18,20 @@ public class Expense implements Serializable {
     @Column(name = "id")
     private int id;
 
-    @JoinColumn(name = "User.id")
-    private int userId;
+    @ManyToOne(targetEntity = Employee.class)
+    @JoinColumn(name = "employee_id", nullable = false, referencedColumnName = "id")
+    private Employee employee;
 
-    @JoinColumn(name = "ExpenseType.id")
-    private int expenseTypeId;
+    @ManyToOne(targetEntity = OrganizationExpenseType.class)
+    @JoinColumn(name = "organizationExpenseType_id", nullable = false, referencedColumnName = "id")
+    private OrganizationExpenseType organizationExpenseType;
 
     @Column(name = "amount", nullable = false, columnDefinition = "float default 0 NOT NULL")
     private double amount;
 
+    @Column(name = "isAccepted", nullable = false, columnDefinition = "boolean default false")
+    private boolean isAccepted;
+
+    @Column(name = "isPaid", nullable = false, columnDefinition = "boolean default false")
+    private boolean isPaid;
 }
