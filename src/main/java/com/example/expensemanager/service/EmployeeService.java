@@ -35,11 +35,8 @@ public class EmployeeService {
 
     public ResponseEntity<List<Employee>> getAll() {
         try {
-            List<Employee> employees = new ArrayList<Employee>();
-            if (repository.findAll().isEmpty()){
-                return new ResponseEntity<>(Collections.emptyList(), HttpStatus.OK);
-            }else{
-                return new ResponseEntity<>(removePassword(employees), HttpStatus.OK);            }
+            List<Employee> employees = repository.findAll();
+            return new ResponseEntity<>(removePassword(employees), HttpStatus.OK);
         }catch (Exception e){
             logger.log(Level.SEVERE, "Employee getAll: " + e.getMessage());
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

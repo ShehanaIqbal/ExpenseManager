@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface EmployeeRepository extends JpaRepository<Employee, Integer>, JpaSpecificationExecutor<Employee> {
 
     Optional<List<Employee>> findByOrganizationId(int organizationId);
+
+    Optional<Employee> findByName(String username);
 }

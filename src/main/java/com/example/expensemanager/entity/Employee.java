@@ -20,9 +20,12 @@ public class Employee implements Serializable {
     @Column(name = "id", nullable = false)
     private int id;
 
-    @ManyToOne(targetEntity = Organization.class)
-    @JoinColumn(name = "organization_id", nullable = false, referencedColumnName = "id")
-    private Organization organization;
+//    @ManyToOne(targetEntity = Organization.class)
+//    @JoinColumn(name = "organization_id", nullable = false, referencedColumnName = "id")
+//    private Organization organization;
+
+    @Column(name = "organization_id", nullable = false)
+    private int organizationId;
 
     @Column(name = "name", nullable = false, columnDefinition = "varchar(1000)")
     private String name;
@@ -40,6 +43,6 @@ public class Employee implements Serializable {
     @Column(name = "role", nullable = false, columnDefinition = "integer default 1")
     private int role;
 
-    @OneToMany(mappedBy = "employee",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private Set<Expense> expenseSet;
+//    @OneToMany(mappedBy = "employee",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//    private Set<Expense> expenseSet;
 }

@@ -18,9 +18,12 @@ public class Expense implements Serializable {
     @Column(name = "id")
     private int id;
 
-    @ManyToOne(targetEntity = Employee.class)
-    @JoinColumn(name = "employee_id", nullable = false, referencedColumnName = "id")
-    private Employee employee;
+    @Column(name = "employee_id", nullable = false)
+    private int employeeId;
+
+//    @ManyToOne(targetEntity = Employee.class)
+//    @JoinColumn(name = "employee_id", nullable = false, referencedColumnName = "id")
+//    private Employee employee;
 
     @ManyToOne(targetEntity = OrganizationExpenseType.class)
     @JoinColumn(name = "organizationExpenseType_id", nullable = false, referencedColumnName = "id")
